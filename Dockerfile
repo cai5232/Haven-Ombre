@@ -13,7 +13,9 @@ WORKDIR /app
 # Install dependencies first (leverage Docker cache)
 # 先装依赖（利用 Docker 缓存）
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+# cache-bust: 20260806-2334
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
 
 # Copy project files / 复制项目文件
 COPY *.py .
