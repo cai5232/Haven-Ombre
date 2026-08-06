@@ -13,9 +13,10 @@ WORKDIR /app
 # Install dependencies first (leverage Docker cache)
 # 先装依赖（利用 Docker 缓存）
 COPY requirements.txt .
-# cache-bust: 20260806-2334
+# cache-bust: 20260806-2340
 RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt
+    pip install --no-cache-dir -r requirements.txt && \
+    python -c "import mcp; print('mcp version:', mcp.__version__)"
 
 # Copy project files / 复制项目文件
 COPY *.py .
