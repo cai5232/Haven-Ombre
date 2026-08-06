@@ -13,13 +13,8 @@ WORKDIR /app
 # Install dependencies first (leverage Docker cache)
 # 先装依赖（利用 Docker 缓存）
 COPY requirements.txt .
-# cache-bust: 20260807-0003
-RUN pip install --no-cache-dir --upgrade pip
-RUN pip install --no-cache-dir "mcp>=1.2.0,<2.0.0"
-RUN pip install --no-cache-dir "rapidfuzz>=3.0.0" "openai>=1.0.0" "pyyaml>=6.0" "tzdata>=2024.1"
-RUN pip install --no-cache-dir "python-frontmatter>=1.1.0" "jieba>=0.42.1" "httpx>=0.27.0"
-RUN pip install --no-cache-dir "starlette>=0.37.2" "uvicorn>=0.30.0" "python-multipart>=0.0.9" "numpy>=1.24.0"
-RUN python -c "import mcp; print('mcp version:', mcp.__version__)"
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
 
 # Copy project files / 复制项目文件
 COPY *.py .
