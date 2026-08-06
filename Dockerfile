@@ -10,6 +10,11 @@ FROM python:3.12-slim
 
 WORKDIR /app
 
+# Build deps for packages that need compilation on slim image
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gcc libffi-dev libssl-dev && \
+    rm -rf /var/lib/apt/lists/*
+
 # Install dependencies first (leverage Docker cache)
 # 先装依赖（利用 Docker 缓存）
 COPY requirements.txt .
