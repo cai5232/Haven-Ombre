@@ -4,8 +4,8 @@
 # ============================================================
 
 # MCP 协议 SDK（Claude 通信核心）
-# pinned exact to force pip cache bust
-mcp==1.1.0
+# fastmcp requires >=1.2.0
+mcp>=1.2.0,<2.0.0
 
 # 模糊匹配（记忆桶搜索）
 rapidfuzz>=3.0.0
